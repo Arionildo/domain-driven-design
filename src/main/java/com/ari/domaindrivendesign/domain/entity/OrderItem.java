@@ -19,22 +19,14 @@ public final class OrderItem extends BaseEntity<Long> {
     private int quantity;
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    public OrderItem(Product product, int quantity, BigDecimal price, Order order) {
+    public OrderItem(Product product, int quantity, BigDecimal price) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
-        this.order = order;
     }
 
     public BigDecimal getTotalValue() {
         return price.multiply(BigDecimal.valueOf(quantity));
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

@@ -1,9 +1,6 @@
 package com.ari.domaindrivendesign.domain.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,8 +14,9 @@ public class Order extends BaseEntity<Long> {
     private LocalDateTime orderDate;
     private BigDecimal totalValue;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> orderItems = new ArrayList<>();
+    @OneToMany(orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "order_id", nullable = false)
+    private final List<OrderItem> orderItems = new ArrayList<>();
 
     public Order(LocalDateTime orderDate) {
         this.orderDate = orderDate;
@@ -29,13 +27,11 @@ public class Order extends BaseEntity<Long> {
 
     public void addOrderItem(List<OrderItem> orderItem) {
         orderItems.addAll(orderItem);
-        orderItems.forEach(o -> o.setOrder(this));
         calculateTotalValue(orderItems);
     }
 
     public void removeOrderItem(OrderItem orderItem) {
         orderItems.remove(orderItem);
-        orderItem.setOrder(null);
         calculateTotalValue(orderItems);
     }
 

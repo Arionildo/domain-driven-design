@@ -8,16 +8,16 @@ import jakarta.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class BaseEntity<ID extends Serializable> implements Serializable {
+public abstract class BaseEntity<T extends Serializable> implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected ID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected T id;
 
-    public ID getId() {
+    public T getId() {
         return id;
     }
 
-    public void setId(ID id) {
+    public void setId(T id) {
         this.id = id;
     }
 }

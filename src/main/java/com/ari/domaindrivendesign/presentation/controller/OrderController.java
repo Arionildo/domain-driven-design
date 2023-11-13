@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,10 +25,10 @@ public class OrderController {
 
     @PostMapping("/create")
     public Order createOrder(@RequestBody CreateOrderRequest request) {
-        List<CreateOrderItemCommand> orderItemCommandList = request.getOrderItems().stream()
+        List<CreateOrderItemCommand> orderItemCommandList = request.orderItems().stream()
                 .map(this::mapOrderItems)
                 .toList();
-        CreateOrderCommand orderCommand = new CreateOrderCommand(request.getCustomerName(), orderItemCommandList);
+        CreateOrderCommand orderCommand = new CreateOrderCommand(request.cpf(), orderItemCommandList);
         return createOrderUseCase.execute(orderCommand);
     }
 

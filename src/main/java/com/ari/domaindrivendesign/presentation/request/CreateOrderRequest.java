@@ -5,23 +5,20 @@ import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
-public final class CreateOrderRequest {
-    @NotBlank(message = "Customer Name may not be blank")
-    private String customerName;
-
-    @NotEmpty(message = "The list of order items may not be empty")
-    private List<CreateOrderItemRequest> orderItems;
-
-    public CreateOrderRequest(String customerName, List<CreateOrderItemRequest> orderItems) {
-        this.customerName = customerName;
+public record CreateOrderRequest(@NotBlank(message = "Customer CPF may not be blank") String cpf,
+                                 @NotEmpty(message = "The list of order items may not be empty") List<CreateOrderItemRequest> orderItems) {
+    public CreateOrderRequest(String cpf, List<CreateOrderItemRequest> orderItems) {
+        this.cpf = cpf;
         this.orderItems = orderItems;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    @Override
+    public String cpf() {
+        return cpf;
     }
 
-    public List<CreateOrderItemRequest> getOrderItems() {
+    @Override
+    public List<CreateOrderItemRequest> orderItems() {
         return orderItems;
     }
 }
