@@ -1,4 +1,4 @@
-package com.ari.domaindrivendesign.domain.command;
+package com.ari.domaindrivendesign.application.command;
 
 import java.util.List;
 

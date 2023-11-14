@@ -1,9 +1,9 @@
 package com.ari.domaindrivendesign.presentation.controller;
 
 import com.ari.domaindrivendesign.application.usecase.CreateOrderUseCase;
-import com.ari.domaindrivendesign.domain.command.CreateOrderItemCommand;
+import com.ari.domaindrivendesign.application.command.CreateOrderItemCommand;
 import com.ari.domaindrivendesign.domain.entity.Order;
-import com.ari.domaindrivendesign.domain.command.CreateOrderCommand;
+import com.ari.domaindrivendesign.application.command.CreateOrderCommand;
 import com.ari.domaindrivendesign.presentation.request.CreateOrderItemRequest;
 import com.ari.domaindrivendesign.presentation.request.CreateOrderRequest;
 import org.springframework.web.bind.annotation.PostMapping;

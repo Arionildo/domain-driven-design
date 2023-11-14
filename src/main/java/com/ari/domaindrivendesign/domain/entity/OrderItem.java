@@ -1,9 +1,6 @@
 package com.ari.domaindrivendesign.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -12,14 +9,13 @@ import java.math.BigDecimal;
 @Table(name = "order_items")
 public final class OrderItem extends BaseEntity<Long> {
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Column(name = "product_id")
+    private Long product;
 
     private int quantity;
     private BigDecimal price;
 
-    public OrderItem(Product product, int quantity, BigDecimal price) {
+    public OrderItem(Long product, int quantity, BigDecimal price) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;

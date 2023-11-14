@@ -12,6 +12,8 @@ public class Customer {
     private String cpf;
     private BigDecimal orderLimit;
 
+    protected Customer() {}
+
     public Customer(String cpf, BigDecimal orderLimit) {
         this.cpf = cpf;
         this.orderLimit = orderLimit;
@@ -23,9 +25,5 @@ public class Customer {
 
     public BigDecimal getOrderLimit() {
         return orderLimit;
-    }
-
-    public boolean invalidOrderLimit(BigDecimal value) {
-        return orderLimit.compareTo(value) < 0;
     }
 }

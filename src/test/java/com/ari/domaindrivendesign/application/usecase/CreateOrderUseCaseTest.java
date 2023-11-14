@@ -1,7 +1,7 @@
 package com.ari.domaindrivendesign.application.usecase;
 
-import com.ari.domaindrivendesign.domain.command.CreateOrderCommand;
-import com.ari.domaindrivendesign.domain.command.CreateOrderItemCommand;
+import com.ari.domaindrivendesign.application.command.CreateOrderCommand;
+import com.ari.domaindrivendesign.application.command.CreateOrderItemCommand;
 import com.ari.domaindrivendesign.domain.entity.Customer;
 import com.ari.domaindrivendesign.domain.entity.Order;
 import com.ari.domaindrivendesign.domain.exception.BusinessException;
