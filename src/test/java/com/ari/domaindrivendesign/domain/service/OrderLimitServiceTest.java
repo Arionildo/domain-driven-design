@@ -43,8 +43,6 @@ class OrderLimitServiceTest {
     @Test
     void shouldThrowExceptionForInvalidCustomerLimit() {
         Customer customer = new Customer("456", BigDecimal.valueOf(50.00));
-        OrderItem orderItem = new OrderItem(1L, 1, BigDecimal.valueOf(100));
-        order.addOrderItem(Collections.singletonList(orderItem));
 
         BusinessException exception = assertThrows(BusinessException.class, () -> OrderLimitService.validate(customer, order));
         assertEquals("Invalid Order Limit for this Customer. Limit is 50,00 and got 100,00", exception.getMessage());
